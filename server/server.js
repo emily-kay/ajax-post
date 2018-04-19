@@ -12,7 +12,7 @@ app.use(express.static('server/public'));
 //routes (get,post,put delete requests)
 app.get('/records', (req, res) =>{
     res.send(recordCollection);
-});
+}); //you can check if this is running by going to http://localhost:5000/records
 
 app.listen(PORT, () => {
     console.log(`Running on port ${PORT}`);
