@@ -1,18 +1,17 @@
 const express = require('express');
+const bodyParser = require('body-parser');//
 const app = express();
 const PORT = 5000;
 
 //this will eventually be found in the database
-const recordCollection = require('./modules/record-collection.js');
+const recordRouter = require('./routes/record.route.js');
 
 
 app.use(express.static('server/public'));
+app.use(bodyParser.urlencoded({extended: true})); //you *need*this*line* to get the post to work and submit to your page
+app.use('/record', recordRouter)
 
 
-//routes (get,post,put delete requests)
-app.get('/records', (req, res) =>{
-    res.send(recordCollection);
-}); //you can check if this is running by going to http://localhost:5000/records
 
 app.listen(PORT, () => {
     console.log(`Running on port ${PORT}`);
